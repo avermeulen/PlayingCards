@@ -78,29 +78,49 @@ var getAces = function(pack){
     return aces;
 }
 
-// show me all the aces
-/*
-var aces = getAces(packOfCards);
+var dealCards = function(pack, user1Cards, user2Cards, user3Cards){
 
-aces.forEach(function(card){
-    console.log(card);
-    console.log(card.color());
-});
+    for(var i=0;i<5;i++){
+        for(var j=0;j<3;j++){
+            //get card from the pack
+            var card = pack.shift();
+            if(j === 0){
+                user1Cards.push(card)
+            }
+            else if (j === 1){
+                user2Cards.push(card)
+            }
+            else if (j === 2){
+                user3Cards.push(card);
+            }
+        }
+    }
+};
 
-console.log(aces);
-*/
+var user1 = [];
+var user2 = [];
+var user3 = [];
 
 var packOfCards = createPackOfCards();
+
+packOfCards = _.shuffle(packOfCards);
+
+dealCards(packOfCards, user1, user2, user3);
+
+
+
 showPack(packOfCards, ".pack")
 
+showPack(user1, ".user1Pack");
+showPack(user2, ".user2Pack");
+showPack(user3, ".user3Pack");
+
+/*
 var a = getAces(packOfCards)
-
 console.log(a);
-
 //showPack(, ".pack2");
-
 showPack(getAces(packOfCards), ".pack3")
-
+*/
 
 
 //
