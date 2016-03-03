@@ -78,6 +78,8 @@ var getAces = function(pack){
     return aces;
 }
 
+// a much better way to write this function is to return a map which contains the cards for each user
+// see the example below
 var dealCards = function(pack, user1Cards, user2Cards, user3Cards){
 
     for(var i=0;i<5;i++){
@@ -95,6 +97,31 @@ var dealCards = function(pack, user1Cards, user2Cards, user3Cards){
             }
         }
     }
+};
+
+var dealCardsMap = function(pack){
+    var userCards = {
+        user1 : 0,
+        user2 : 0,
+        user3 : 0
+    };
+
+    for(var i=0;i<5;i++){
+        for(var j=0;j<3;j++){
+            //get card from the pack
+            var card = pack.shift();
+            if(j === 0){
+                userCards["user1"].push(card)
+            }
+            else if (j === 1){
+                userCards["user2"].push(card)
+            }
+            else if (j === 2){
+                userCards["user3"].push(card);
+            }
+        }
+    }
+    return userCards;
 };
 
 var user1 = [];
